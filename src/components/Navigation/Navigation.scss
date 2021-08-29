@@ -1,0 +1,69 @@
+@import "../../theme/all";
+
+.Navigation {
+  width: max-content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-light);
+  padding-right: 0;
+
+  &__header {
+    // display: flex;
+    margin-bottom: 3rem;
+
+    & h1 {
+      text-align: right;
+      font-size: 3rem;
+      margin-bottom: 0;
+      margin-right: 2rem;
+    }
+
+    &--menu {
+      // @include menu-logo;
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__links {
+    margin-left: 6rem;
+    &--link {
+      display: block;
+      text-align: right;
+      padding: $padding-box;
+      margin: 1rem 0;
+      font-weight: bold;
+      border-right: 0.5rem solid transparent;
+      transition: $transition;
+
+      &:hover {
+        color: var(--primary-medium);
+      }
+
+      &.active {
+        border-right: 0.5rem solid var(--primary-medium);
+      }
+    }
+  }
+
+  & .ThemeToggle {
+    margin: 1rem;
+  }
+
+  &__deconnexion {
+    text-align: center;
+    cursor: pointer;
+    transition: $transition;
+
+    &:first-of-type {
+      margin-top: auto;
+      margin-bottom: 1rem;
+    }
+
+    &:hover {
+      color: var(--primary-medium);
+    }
+  }
+}

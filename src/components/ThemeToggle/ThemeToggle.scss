@@ -1,0 +1,14 @@
+@import "../../theme/all";
+
+.ThemeToggle {
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & svg {
+    margin-right: 0.3rem;
+  }
+}

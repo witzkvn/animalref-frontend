@@ -17,7 +17,7 @@
 }
 
 .pageWrapWidth {
-  max-width: 750px;
+  max-width: 850px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -45,6 +45,22 @@
       color: var(--secondary-light);
     }
   }
+}
+
+.logo-md {
+  width: 1.4rem;
+  height: 1.4rem;
+  cursor: pointer;
+}
+.logo-lg {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+.logo-xlg {
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
 }
 
 .error-text {

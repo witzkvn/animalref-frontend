@@ -1,1 +1,103 @@
 @import "./theme/all";
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-dark);
+  display: flex;
+
+  &__left {
+    box-shadow: $shadow-box;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    z-index: 100;
+    width: 100%;
+
+    &:not(.active) {
+      background-color: red;
+      background-color: transparent;
+      transition: background-color 0.05s ease 0s;
+    }
+
+    & .Navigation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      transition: transform 0.2s ease;
+    }
+
+    &.active {
+      transform: translateX(0);
+      background-color: var(--black-overlay);
+      transition: background-color 0.05s ease;
+
+      & .Navigation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(0);
+      }
+    }
+  }
+  &__right {
+    background-color: var(--bg-dark);
+    max-height: 100vh;
+    overflow: auto;
+    width: 100%;
+    // padding: 0 $padding-container;
+
+    &--fixed {
+      padding: 0.7rem $padding-container;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      left: 0;
+      background-color: var(--bg-darker);
+      z-index: 90;
+
+      & h1 {
+        margin-bottom: 0;
+      }
+
+      &.mobile {
+        display: none;
+      }
+    }
+
+    &--top {
+      display: flex;
+    }
+
+    &--menu {
+      @include menu-logo;
+    }
+
+    & .Searchbar ~ .UserAvatar__link {
+      margin-left: auto;
+      & .UserAvatar {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: $bp-phone-lg) {
+    .App {
+      &__right {
+        &--fixed {
+          &.pc {
+            display: none;
+          }
+
+          &.mobile {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
