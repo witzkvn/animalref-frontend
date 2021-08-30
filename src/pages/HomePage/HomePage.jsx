@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import DataPreview from "../../components/DataPreview/DataPreview";
 // import RecipesGrid from "../../components/RecipesGrid/RecipesGrid";
 // import { selectRecipesArray } from "../../redux/recipes/recipes-selectors";
 // import { getAllRecipesAction } from "../../redux/recipes/recipes-actions";
@@ -25,14 +26,22 @@ const HomePage = () => {
     // fetchRecipes().then(() => setIsLoading(false));
   }, [fetchRecipes]);
 
+  const fakeData = {};
+
   if (error) {
-    return <p>Une erreur est survenue : {error || "essayez de rafraichir la page ou de vous reconnecter."}</p>;
+    return (
+      <p>
+        Une erreur est survenue :{" "}
+        {error || "essayez de rafraichir la page ou de vous reconnecter."}
+      </p>
+    );
   }
 
   return (
     <div className="HomePage">
       {/* <RecipesGrid recipes={recipesArray} isLoading={isLoading} /> */}
       Homepage
+      <DataPreview data={fakeData} />
     </div>
   );
 };

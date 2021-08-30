@@ -1,0 +1,72 @@
+@import "../../theme/all";
+
+.DataDetailed {
+  background-color: var(--bg-light);
+  border-radius: $radius-md;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  &__text {
+    margin-bottom: 2rem;
+    & h2 {
+      text-align: center;
+    }
+  }
+
+  &__images {
+    &--block {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    & img {
+      width: auto;
+      max-height: 6rem;
+      margin: 1rem;
+      cursor: pointer;
+      display: block;
+      height: auto;
+    }
+  }
+
+  &__refLink {
+    padding: 1rem;
+    margin: 1.5rem;
+    border-top: 2px solid var(--bg-white-dark);
+    border-bottom: 2px solid var(--bg-white-dark);
+    font-weight: bold;
+
+    & p:first-of-type {
+      margin-bottom: 0.5rem;
+    }
+
+    & a {
+      border-bottom: 2px solid var(--accent-light);
+      transition: $transition;
+      &:hover {
+        color: var(--accent-light);
+      }
+    }
+  }
+
+  &__actions {
+    &--input {
+      margin-bottom: 2rem;
+      & input {
+        margin-right: 0.5rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__blocks {
+    display: flex;
+    justify-content: space-between;
+
+    &--item {
+      &:not(:last-of-type) {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import "../../theme/all";
+
+.VoteBlock {
+  display: flex;
+  align-items: center;
+  & .CustomButton {
+    padding: 0.5rem;
+  }
+
+  &__rating {
+    margin: 0 0.5rem;
+    text-align: center;
+  }
+}

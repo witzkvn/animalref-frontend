@@ -2,31 +2,30 @@ import { client } from "../..";
 import { openPopupMessageAction } from "../layout/layout-actions";
 import { setCurrentPage, setTotalPages } from "../search/search-actions";
 import { setCurrentUserAction } from "../user/user-actions";
-import { RecipesActionTypes } from "./data-types";
+import { DataActionTypes } from "./data-types";
 
-// export const setClickedRecipe = (recipe) => ({
-//   type: RecipesActionTypes.SET_CLICKED_RECIPE,
-//   payload: recipe,
-// });
+export const setClickedData = (data) => ({
+  type: DataActionTypes.SET_CLICKED_DATA,
+  payload: data,
+});
 
-// export const getRecipeByIdAction = (recipeID) => {
-//   return async (dispatch) => {
-//     try {
+export const getDataByIdAction = (dataID) => {
+  return async (dispatch) => {
+    try {
+      const res = await client().get(`data/${dataID}`);
 
-//       const res = await client().get(`recipes/${recipeID}`)
-
-//       if (res.status >= 300) {
-//         throw new Error('Une erreur est survenue...')
-//       }
-//       if (res.data.data.data) {
-//         dispatch(setClickedRecipe(res.data.data.data))
-//       }
-
-//     } catch (error) {
-//       throw error
-//     }
-//   }
-// }
+      if (res.status >= 300) {
+        throw new Error("Une erreur est survenue...");
+      }
+      if (res.data.data.data) {
+        dispatch(setClickedData(res.data.data.data));
+        return res.data.data.data;
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+};
 
 // export const setRecipesArray = (recipes) => ({
 //   type: RecipesActionTypes.SET_RECIPES_ARRAY,
@@ -158,23 +157,30 @@ import { RecipesActionTypes } from "./data-types";
 //   }
 // }
 
-// export const toggleFavRecipeAction = (recipeId) => {
-//   return async (dispatch) => {
-//     try {
-//       const res = await client().get(`recipes/fav/${recipeId}`)
+export const toggleFavDataAction = (dataID) => {
+  return async (dispatch) => {
+    try {
+      const res = await client().get(`data/fav/${dataID}`);
 
-//       if (res.status >= 300) {
-//         dispatch(openPopupMessageAction('error', 'Une erreur est survenue...'))
-//         throw new Error('Une erreur est survenue...')
-//       }
+      if (res.status >= 300) {
+        dispatch(openPopupMessageAction("error", "Une erreur est survenue..."));
+        throw new Error("Une erreur est survenue...");
+      }
 
-//       if (res.data.data.data) {
-//         dispatch(setCurrentUserAction(res.data.data.data))
-//         localStorage.setItem("user", JSON.stringify(res.data.data.data));
-//       }
-//     } catch (error) {
-//       dispatch(openPopupMessageAction('error', 'Une erreur est survenue...'))
-//       throw error
-//     }
-//   }
-// }
+      if (res.data.data.data) {
+        dispatch(setCurrentUserAction(res.data.data.data));
+        localStorage.setItem("user", JSON.stringify(res.data.data.data));
+      }
+    } catch (error) {
+      dispatch(
+        openPopupMessageAction(
+          "error",
+          error?.response?.data?.message
+            ? error?.response?.data?.message
+            : "Une erreur est survenue..."
+        )
+      );
+      throw error;
+    }
+  };
+};

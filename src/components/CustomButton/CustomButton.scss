@@ -44,4 +44,10 @@
       background-color: var(--primary-light);
     }
   }
+
+  &:disabled {
+    background-color: var(--grey-dark);
+    color: var(--grey-light);
+    cursor: not-allowed;
+  }
 }
