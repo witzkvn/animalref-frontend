@@ -1,19 +1,37 @@
-// @import "../../theme/all";
+@import "../../theme/all";
 
-// .ShareButton {
-//   border-radius: $radius-round;
-//   background-color: var(--bg-white-medium);
-//   width: 1.8rem;
-//   height: 1.8rem;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   box-shadow: $shadow-box;
-//   font-size: 1.3rem;
-//   color: var(--red-liked);
-//   cursor: pointer;
+.ShareButton {
+  &__wrapper p,
+  &__buttons,
+  &__wrapper label {
+    margin-bottom: 1rem;
+  }
 
-//   &:hover svg {
-//     animation: 1s ease infinite heartBeat;
-//   }
-// }
+  &__wrapper label {
+    display: inline-block;
+  }
+
+  &__copy {
+    &--input {
+      display: flex;
+      margin-bottom: 1rem;
+
+      input {
+        margin-bottom: 0;
+        border: 1px solid var(--bg-dark);
+        background-color: var(--bg-dark);
+        width: 100%;
+        margin-right: 0.5rem;
+        border-radius: $radius-md;
+      }
+
+      .CustomButton {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__buttons > *:not(:last-of-type) {
+    margin-right: 0.5rem;
+  }
+}

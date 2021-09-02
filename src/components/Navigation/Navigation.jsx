@@ -27,7 +27,7 @@ const Navigation = ({ setNavOpen }) => {
     <div className="Navigation" onClick={(e) => e.stopPropagation()}>
       <div className="Navigation__header">
         <div className="Navigation__header--menu" onClick={handleNavClose}>
-          <IoClose className="logo-xlg" />
+          <IoClose className="logo-md" />
         </div>
         <h1>Menu</h1>
       </div>
@@ -41,40 +41,45 @@ const Navigation = ({ setNavOpen }) => {
         >
           Publications
         </NavLink>
-        <NavLink
-          className="Navigation__links--link"
-          to="/publier"
-          onClick={handleNavClose}
-        >
-          Publier
-        </NavLink>
-        <NavLink
-          className="Navigation__links--link"
-          to="/favoris"
-          onClick={handleNavClose}
-        >
-          Favoris
-        </NavLink>
-        <NavLink
-          className="Navigation__links--link"
-          to="/compte"
-          onClick={() => {
-            dispatch(setClickedUserAction());
-            handleNavClose();
-          }}
-        >
-          Compte
-        </NavLink>
-        <NavLink
-          className="Navigation__links--link"
-          to="/parametres"
-          onClick={handleNavClose}
-        >
-          Paramètres
-        </NavLink>
+        {currentUser && (
+          <>
+            <NavLink
+              className="Navigation__links--link"
+              to="/publier"
+              onClick={handleNavClose}
+            >
+              Publier
+            </NavLink>
+            <NavLink
+              className="Navigation__links--link"
+              to="/favoris"
+              onClick={handleNavClose}
+            >
+              Favoris
+            </NavLink>
+            <NavLink
+              className="Navigation__links--link"
+              to="/compte"
+              onClick={() => {
+                dispatch(setClickedUserAction());
+                handleNavClose();
+              }}
+            >
+              Compte
+            </NavLink>
+            <NavLink
+              className="Navigation__links--link"
+              to="/parametres"
+              onClick={handleNavClose}
+            >
+              Paramètres
+            </NavLink>
+          </>
+        )}
       </div>
       {currentUser ? (
-        <div
+        <Link
+          to="/"
           className="Navigation__deconnexion"
           onClick={() => {
             handleNavClose();
@@ -82,7 +87,7 @@ const Navigation = ({ setNavOpen }) => {
           }}
         >
           Déconnexion
-        </div>
+        </Link>
       ) : (
         <>
           <Link to="/login" className="Navigation__deconnexion">

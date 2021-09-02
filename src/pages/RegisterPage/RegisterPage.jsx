@@ -10,32 +10,31 @@ const RegisterPage = () => {
   const location = useLocation().pathname;
 
   return (
-    <div class="RegisterPage">
+    <div class="RegisterPage pageWrapWidth container-medium">
       <div className="RegisterPage__wrapper">
-        <h1>Bienvenue sur AnimalRef !</h1>
-        <p>
-          Connectez-vous pour publier, voter et enregistrer vos favoris.
-          <br />
-          {location === "/login" ? (
-            <>
-              <p>Merci de vous connecter pour accéder au contenu.</p>
-              <Login />
-              <p>Vous n'avez pas encore de compte ? Créez-en un :</p>
+        <h1>Bienvenue sur Datanimal !</h1>
+        <p>Connectez-vous pour publier, voter et enregistrer vos favoris.</p>
+        {location === "/login" ? (
+          <>
+            <div className="RegisterPage__switch">
+              <p>Vous n'avez pas encore de compte ?</p>
               <Link to="/signup">
-                <CustomButton level="transparent">S'inscrire</CustomButton>
+                <CustomButton level="secondary">S'inscrire</CustomButton>
               </Link>
-            </>
-          ) : (
-            <>
-              <p>Merci de vous inscrire pour accéder au contenu.</p>
-              <Signup />
-              <p>Vous avez déjà un compte ? Connectez-vous :</p>
+            </div>
+            <Login />
+          </>
+        ) : (
+          <>
+            <div className="RegisterPage__switch">
+              <p>Vous avez déjà un compte ?</p>
               <Link to="/login">
-                <CustomButton level="transparent">Se connecter</CustomButton>
+                <CustomButton level="secondary">Se connecter</CustomButton>
               </Link>
-            </>
-          )}
-        </p>
+            </div>
+            <Signup />
+          </>
+        )}
       </div>
     </div>
   );

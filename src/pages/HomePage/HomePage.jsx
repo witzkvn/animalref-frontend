@@ -1,20 +1,21 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DataPreview from "../../components/DataPreview/DataPreview";
+import "./HomePage.scss";
 // import RecipesGrid from "../../components/RecipesGrid/RecipesGrid";
-// import { selectRecipesArray } from "../../redux/recipes/recipes-selectors";
-// import { getAllRecipesAction } from "../../redux/recipes/recipes-actions";
+import { selectDatasArray } from "../../redux/data/data-selectors";
+import { getAllDatasAction } from "../../redux/data/data-actions";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
-  // const recipesArray = useSelector(selectRecipesArray);
+  const datasArray = useSelector(selectDatasArray);
 
-  const fetchRecipes = useCallback(async () => {
+  const fetchDatas = useCallback(async () => {
     setError(null);
     try {
-      // await dispatch(getAllRecipesAction());
+      await dispatch(getAllDatasAction());
     } catch (error) {
       setError(error?.response?.data?.message);
     }
@@ -23,10 +24,8 @@ const HomePage = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    // fetchRecipes().then(() => setIsLoading(false));
-  }, [fetchRecipes]);
-
-  const fakeData = {};
+    fetchDatas().then(() => setIsLoading(false));
+  }, [fetchDatas]);
 
   if (error) {
     return (
@@ -38,10 +37,13 @@ const HomePage = () => {
   }
 
   return (
-    <div className="HomePage">
-      {/* <RecipesGrid recipes={recipesArray} isLoading={isLoading} /> */}
-      Homepage
-      <DataPreview data={fakeData} />
+    <div className="HomePage pageWrapWidth container-medium">
+      <h2>Dernières publications</h2>
+      <div className="HomePage__wrapper">
+        {datasArray &&
+          datasArray.length > 0 &&
+          datasArray.map((data) => <DataPreview data={data} />)}
+      </div>
     </div>
   );
 };

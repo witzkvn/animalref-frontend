@@ -50,7 +50,9 @@ const DataDetailed = ({ data }) => {
       <div className="DataDetailed pageWrapWidth container-medium">
         <div className="DataDetailed__text">
           <h2>{title && title}</h2>
-          <div>{description && description}</div>
+          <div className="DataDetailed__text--description">
+            {description && description}
+          </div>
         </div>
 
         <div className="DataDetailed__images">
@@ -126,18 +128,11 @@ const DataDetailed = ({ data }) => {
             <label htmlFor="vote">
               Afin de voter pour la vérification de cette publication, j'atteste
               avoir lu les informations de cette publication et les avoir
-              vérifier avec la source indiquée en référence.
+              vérifié avec la source indiquée en référence.
             </label>
           </div>
           <div className="DataDetailed__blocks">
             <div className="DataDetailed__blocks--item vote-block">
-              {/* <CustomButton level="primary" disabled={!checked}>
-                <IoCaretUp />
-              </CustomButton>
-              <div className="DataDetailed__rating">{rating ? rating : 0}</div>
-              <CustomButton level="primary" disabled={!checked}>
-                <IoCaretDown />
-              </CustomButton> */}
               <VoteBlock rating={rating} checked={checked} />
             </div>
             <div className="DataDetailed__blocks--item">

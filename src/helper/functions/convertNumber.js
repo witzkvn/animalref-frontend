@@ -2,14 +2,21 @@ export const convertNumber = (number) => {
   const value = parseInt(number);
   const sign = value < 0 ? -1 : 1;
   const valuePos = Math.abs(value);
+  let customValue;
 
   if (valuePos >= 0 && valuePos < 1000) {
-    return valuePos * sign;
+    customValue = valuePos * sign;
   } else if (valuePos >= 1000 && valuePos < 10000) {
-    return `${((valuePos / 1000) * sign).toFixed(1)}k`;
+    customValue = `${(valuePos / 1000).toFixed(1)}k`;
   } else if (valuePos >= 10000 && valuePos < 1000000) {
-    return `${((valuePos / 1000) * sign).toFixed(0)}k`;
+    customValue = `${(valuePos / 1000).toFixed(0)}k`;
   } else if (valuePos >= 1000000) {
-    return `${((valuePos / 1000000) * sign).toFixed(2)}M`;
+    customValue = `${(valuePos / 1000000).toFixed(2)}M`;
+  }
+
+  if (sign === -1) {
+    return `- ${customValue}`;
+  } else if (sign === 1) {
+    return `+ ${customValue}`;
   }
 };

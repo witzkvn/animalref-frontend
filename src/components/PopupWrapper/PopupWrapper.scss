@@ -1,0 +1,24 @@
+@import "../../theme/all";
+
+.PopupWrapper {
+  @include overlay-bg;
+  visibility: hidden;
+  display: none;
+  text-align: center;
+
+  &.active {
+    visibility: visible;
+    display: flex;
+  }
+
+  &__wrapper {
+    @include overlay-inside;
+    position: relative;
+  }
+
+  &__close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}

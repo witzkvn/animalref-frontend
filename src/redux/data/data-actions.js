@@ -27,30 +27,34 @@ export const getDataByIdAction = (dataID) => {
   };
 };
 
-// export const setRecipesArray = (recipes) => ({
-//   type: RecipesActionTypes.SET_RECIPES_ARRAY,
-//   payload: recipes,
-// });
+export const setDatasArray = (datas) => ({
+  type: DataActionTypes.SET_DATAS_ARRAY,
+  payload: datas,
+});
 
-// export const getAllRecipesAction = (fetchUrl) => {
-//   return async (dispatch) => {
-//     try {
-//       const res = await client().get(`recipes/?fields=title,slug,images,time,difficulty,ratingsAverage${fetchUrl}`)
+export const getAllDatasAction = (fetchUrl) => {
+  return async (dispatch) => {
+    try {
+      const res = await client().get(
+        `data/?fields=title,slug,description,refLink,createdAt,rating${
+          fetchUrl ? fetchUrl : ""
+        }`
+      );
 
-//       if (res.status >= 300) {
-//         throw new Error('Une erreur est survenue...')
-//       }
+      if (res.status >= 300) {
+        throw new Error("Une erreur est survenue...");
+      }
 
-//       if (res.data.data.data) {
-//         dispatch(setRecipesArray(res.data.data.data))
-//         dispatch(setTotalPages(res.data.totalPages))
-//         dispatch(setCurrentPage(res.data.page))
-//       }
-//     } catch (error) {
-//       throw error
-//     }
-//   }
-// }
+      if (res.data.data.data) {
+        dispatch(setDatasArray(res.data.data.data));
+        dispatch(setTotalPages(res.data.totalPages));
+        dispatch(setCurrentPage(res.data.page));
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+};
 
 // export const getAllRecipesFromUserByIdAction = (userId) => {
 //   return async (dispatch) => {

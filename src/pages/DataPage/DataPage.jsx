@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import DataDetailed from "../../components/DataDetailed/DataDetailed";
+import PopupWrapper from "../../components/PopupWrapper/PopupWrapper";
 import {
   getDataByIdAction,
   setClickedData,

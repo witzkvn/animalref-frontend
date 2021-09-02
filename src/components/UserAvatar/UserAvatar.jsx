@@ -6,60 +6,22 @@ import { setClickedUserAction } from "../../redux/user/user-actions";
 
 import "./UserAvatar.scss";
 
-const UserAvatar = ({ imgSrc, userId, toAccount }) => {
+const UserAvatar = ({ imgSrc }) => {
   const dispatch = useDispatch();
   const handleImgError = (e) => {
     e.target.src = defaultAvatar;
   };
 
-  const handleSetClickedUser = () => {
-    dispatch(setClickedUserAction(userId));
-  };
-
-  if (userId) {
-    return (
-      <Link
-        to={`/chef/${userId}`}
-        onClick={handleSetClickedUser}
-        className="UserAvatar__link"
-      >
-        <div className="UserAvatar">
-          <img
-            src={imgSrc || defaultAvatar}
-            onError={handleImgError}
-            alt="User Avatar"
-          />
-        </div>
-      </Link>
-    );
-  }
-
-  if (toAccount) {
-    return (
-      <Link
-        to="/compte"
-        onClick={handleSetClickedUser}
-        className="UserAvatar__link"
-      >
-        <div className="UserAvatar">
-          <img
-            src={imgSrc || defaultAvatar}
-            onError={handleImgError}
-            alt="User Avatar"
-          />
-        </div>
-      </Link>
-    );
-  }
-
   return (
-    <div className="UserAvatar">
-      <img
-        src={imgSrc || defaultAvatar}
-        onError={handleImgError}
-        alt="User Avatar"
-      />
-    </div>
+    <Link className="UserAvatar" to="/compte">
+      <div>
+        <img
+          src={imgSrc || defaultAvatar}
+          onError={handleImgError}
+          alt="User Avatar"
+        />
+      </div>
+    </Link>
   );
 };
 

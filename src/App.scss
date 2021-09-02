@@ -68,6 +68,10 @@
       }
     }
 
+    &--logo {
+      margin-right: auto;
+    }
+
     &--top {
       display: flex;
     }
@@ -76,12 +80,16 @@
       @include menu-logo;
     }
 
-    & .Searchbar ~ .UserAvatar__link {
-      margin-left: auto;
-      & .UserAvatar {
-        width: 2.5rem;
-        height: 2.5rem;
-      }
+    &--connexion {
+      display: flex;
+      margin-left: 2rem;
+    }
+
+    & .Searchbar ~ .UserAvatar {
+      margin-left: 2rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      cursor: pointer;
     }
   }
 

@@ -8,6 +8,7 @@ const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 const SettingsPage = lazy(() => import("../pages/SettingsPage/SettingsPage"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"));
+const AccountPage = lazy(() => import("../pages/AccountPage/AccountPage"));
 const DataPage = lazy(() => import("../pages/DataPage/DataPage"));
 
 const Routes = () => {
@@ -19,6 +20,7 @@ const Routes = () => {
             <HomePage />
           </Route>
           <ProtectedRoute path="/parametres" component={SettingsPage} />
+          <ProtectedRoute path="/compte" component={AccountPage} />
 
           <Route path="/data/:id">
             <DataPage />

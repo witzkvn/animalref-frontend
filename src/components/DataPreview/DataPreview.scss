@@ -1,4 +1,46 @@
 @import "../../theme/all";
 
 .DataPreview {
+  display: block;
+
+  &__wrapper {
+    background-color: var(--bg-light);
+    border-radius: $radius-md;
+  }
+
+  &__top {
+    display: flex;
+  }
+
+  &__text {
+    width: 85%;
+    padding: $padding-sm;
+  }
+
+  &__rating {
+    width: 15%;
+    min-width: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid var(--bg-medium);
+
+    & p {
+      font-size: 1.8rem;
+    }
+  }
+
+  &__bottom {
+    padding: $padding-xs $padding-sm;
+    background-color: var(--bg-medium);
+    font-size: 0.7rem;
+
+    & a {
+      border-bottom: 2px solid var(--accent-light);
+      transition: $transition;
+      &:hover {
+        color: var(--accent-light);
+      }
+    }
+  }
 }

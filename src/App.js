@@ -6,11 +6,12 @@ import { selectCurrentUser } from "./redux/user/user-selectors";
 import Routes from "./routes/Routes";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Login from "./components/Login/Login";
 import NotificationPoper from "./components/NotificationPoper/NotificationPoper";
 import { selectOverlayMessageOpen } from "./redux/layout/layout-selectors";
 import UserAvatar from "./components/UserAvatar/UserAvatar";
+import CustomButton from "./components/CustomButton/CustomButton";
 
 const App = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -37,12 +38,16 @@ const App = () => {
                 >
                   <IoMenu />
                 </div>
-                <NavLink exact to="/">
-                  <h1>AnimalRef</h1>
+                <NavLink exact to="/" className="App__right--logo">
+                  <h1>Datanimal</h1>
                 </NavLink>
                 <Searchbar />
-                {currentUser && (
+                {currentUser ? (
                   <UserAvatar imgSrc={currentUser?.avatar} toAccount={true} />
+                ) : (
+                  <Link className="App__right--connexion" to="/login">
+                    <CustomButton level="accent">Connexion</CustomButton>
+                  </Link>
                 )}
               </div>
             </div>
@@ -55,8 +60,12 @@ const App = () => {
                   <IoMenu />
                 </div>
                 {/* <SearchbarMobile /> */}
-                {currentUser && (
+                {currentUser ? (
                   <UserAvatar imgSrc={currentUser?.avatar} toAccount={true} />
+                ) : (
+                  <Link>
+                    <CustomButton level="accent">Connexion</CustomButton>
+                  </Link>
                 )}
               </div>
             </div>

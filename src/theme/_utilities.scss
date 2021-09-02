@@ -69,6 +69,11 @@
   cursor: pointer;
 }
 
+.loading-text {
+  font-size: 0.8rem;
+  margin: 1rem;
+}
+
 .text-ellipsis {
   overflow: hidden;
   white-space: nowrap;
@@ -77,6 +82,7 @@
 
 .error-text {
   color: var(--error);
+  font-size: 0.8rem;
 }
 
 .form-group {
