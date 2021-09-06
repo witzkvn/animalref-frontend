@@ -1,19 +1,21 @@
-// @import "../../theme/all";
+@import "../../theme/all";
 
-// .SignalButton {
-//   border-radius: $radius-round;
-//   background-color: var(--bg-white-medium);
-//   width: 1.8rem;
-//   height: 1.8rem;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   box-shadow: $shadow-box;
-//   font-size: 1.3rem;
-//   color: var(--red-liked);
-//   cursor: pointer;
+.SignalButton {
+  &__popup {
+    & form {
+      text-align: left;
+    }
 
-//   &:hover svg {
-//     animation: 1s ease infinite heartBeat;
-//   }
-// }
+    & textarea {
+      display: block;
+      border: 1px solid var(--grey-dark);
+      width: 100%;
+      margin-top: 1rem;
+      min-height: 12rem;
+    }
+
+    & .CustomButton {
+      margin-left: auto;
+    }
+  }
+}

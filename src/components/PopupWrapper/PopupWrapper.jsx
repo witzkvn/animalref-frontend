@@ -15,7 +15,6 @@ const PopupWrapper = ({
     (e) => {
       if (popupOpen && popupEl.current && !popupEl.current.contains(e.target)) {
         setPopupOpen(false);
-        console.log("call onClose");
       }
       e.stopPropagation();
     },

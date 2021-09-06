@@ -13,8 +13,6 @@ const AddFavButton = ({ dataID }) => {
   const recipeIsFav = userFavs ? userFavs.some((id) => id === dataID) : false;
   const [isFav, setIsFav] = useState(recipeIsFav);
 
-  console.log(isFav);
-
   const toggleFavHandler = async (dataID) => {
     setIsFav((prevState) => !prevState);
     try {

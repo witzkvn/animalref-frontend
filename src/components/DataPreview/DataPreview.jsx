@@ -5,7 +5,6 @@ import "./DataPreview.scss";
 
 const DataPreview = ({ data }) => {
   const { title, description, refLink, rating, _id } = data;
-  console.log(data);
   return (
     <Link to={`/data/${_id}`} className="DataPreview">
       <div className="DataPreview__wrapper">

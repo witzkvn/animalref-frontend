@@ -40,7 +40,6 @@ export const updateUserAtion = (newSettingsObj) => {
         updatedField = JSON.stringify(newSettingsObj);
       }
 
-      console.log(updatedField);
       const res = await client().patch(`users/updateMe`, updatedField);
 
       if (res.status >= 300) {

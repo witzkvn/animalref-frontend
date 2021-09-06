@@ -6,22 +6,34 @@ import { setClickedUserAction } from "../../redux/user/user-actions";
 
 import "./UserAvatar.scss";
 
-const UserAvatar = ({ imgSrc }) => {
+const UserAvatar = ({ imgSrc, toAccount }) => {
   const dispatch = useDispatch();
   const handleImgError = (e) => {
     e.target.src = defaultAvatar;
   };
 
+  if (toAccount) {
+    return (
+      <Link className="UserAvatar" to="/compte">
+        <div>
+          <img
+            src={imgSrc || defaultAvatar}
+            onError={handleImgError}
+            alt="User Avatar"
+          />
+        </div>
+      </Link>
+    );
+  }
+
   return (
-    <Link className="UserAvatar" to="/compte">
-      <div>
-        <img
-          src={imgSrc || defaultAvatar}
-          onError={handleImgError}
-          alt="User Avatar"
-        />
-      </div>
-    </Link>
+    <div className="UserAvatar">
+      <img
+        src={imgSrc || defaultAvatar}
+        onError={handleImgError}
+        alt="User Avatar"
+      />
+    </div>
   );
 };
 
