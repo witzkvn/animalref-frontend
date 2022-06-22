@@ -10,10 +10,17 @@ import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 import "./Navigation.scss";
 import { selectCurrentUser } from "../../redux/user/user-selectors";
+import { selectSearchParams } from "../../redux/search/search-selectors";
+import { setSearchParams } from "../../redux/search/search-actions";
+import { getAllDatasAction } from "../../redux/data/data-actions";
+import { getSearchApiUrl } from "../../helper/functions/getSearchApiUrl";
 
 const Navigation = ({ setNavOpen }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const searchParams = useSelector(selectSearchParams);
+  const searchParamsCategory = searchParams?.searchCategory;
+  const appRightEl = document.getElementsByClassName("App__right")[0];
 
   const handleLogout = () => {
     dispatch(setCurrentUserAction(false));
@@ -22,6 +29,22 @@ const Navigation = ({ setNavOpen }) => {
   const handleNavClose = () => {
     setNavOpen(false);
   };
+
+  const handleSearchCategory = (category) => {
+    const searchParamsObj = {
+      ...searchParams,
+      searchCategory: category ? [category] : [],
+      searchPage: 1,
+      searchOrder: "-createdAt",
+    };
+    appRightEl && appRightEl.scrollTo(0, 0);
+    dispatch(setSearchParams(searchParamsObj));
+    dispatch(getAllDatasAction(getSearchApiUrl(searchParamsObj)));
+
+    handleNavClose();
+  };
+
+  // console.log(searchParamsCategory, searchParamsCategory.includes("chasse"));
 
   return (
     <div className="Navigation" onClick={(e) => e.stopPropagation()}>
@@ -33,49 +56,133 @@ const Navigation = ({ setNavOpen }) => {
       </div>
 
       <div className="Navigation__links">
-        <NavLink
-          className="Navigation__links--link"
+        <Link
+          className={`Navigation__links--link ${
+            searchParamsCategory && searchParamsCategory?.length === 0
+              ? "active"
+              : ""
+          }`}
           exact
           to="/"
-          onClick={handleNavClose}
+          onClick={() => handleSearchCategory(null)}
         >
-          Publications
-        </NavLink>
-        {currentUser && (
-          <>
-            <NavLink
-              className="Navigation__links--link"
-              to="/publier"
-              onClick={handleNavClose}
-            >
-              Publier
-            </NavLink>
-            <NavLink
-              className="Navigation__links--link"
-              to="/favoris"
-              onClick={handleNavClose}
-            >
-              Favoris
-            </NavLink>
-            <NavLink
-              className="Navigation__links--link"
-              to="/compte"
-              onClick={() => {
-                dispatch(setClickedUserAction());
-                handleNavClose();
-              }}
-            >
-              Compte
-            </NavLink>
-            <NavLink
-              className="Navigation__links--link"
-              to="/parametres"
-              onClick={handleNavClose}
-            >
-              Paramètres
-            </NavLink>
-          </>
-        )}
+          Tous
+        </Link>
+        <Link
+          className={`Navigation__links--link ${
+            searchParamsCategory && searchParamsCategory?.includes("chasse")
+              ? "active"
+              : ""
+          }`}
+          exact
+          to="/"
+          onClick={() => handleSearchCategory("chasse")}
+        >
+          Chasse
+        </Link>
+        <Link
+          className={`Navigation__links--link ${
+            searchParamsCategory && searchParamsCategory?.includes("peche")
+              ? "active"
+              : ""
+          }`}
+          exact
+          to="/"
+          onClick={() => handleSearchCategory("peche")}
+        >
+          Pêche
+        </Link>
+
+        <Link
+          className={`Navigation__links--link ${
+            searchParamsCategory &&
+            searchParamsCategory?.includes("environnement")
+              ? "active"
+              : ""
+          }`}
+          to="/"
+          onClick={() => handleSearchCategory("environnement")}
+        >
+          Environnement
+        </Link>
+        <Link
+          className={`Navigation__links--link ${
+            searchParamsCategory && searchParamsCategory?.includes("nutrition")
+              ? "active"
+              : ""
+          }`}
+          to="/"
+          onClick={() => handleSearchCategory("nutrition")}
+        >
+          Nutrition
+        </Link>
+        <Link
+          className={`Navigation__links--link ${
+            searchParamsCategory &&
+            searchParamsCategory?.includes("laboratoire")
+              ? "active"
+              : ""
+          }`}
+          to="/"
+          onClick={() => {
+            handleSearchCategory("laboratoire");
+          }}
+        >
+          Laboratoire
+        </Link>
+        <Link
+          className={`Navigation__links--link ${
+            searchParamsCategory &&
+            searchParamsCategory?.includes("traditions-loisirs")
+              ? "active"
+              : ""
+          }`}
+          to="/"
+          onClick={() => {
+            handleSearchCategory("traditions-loisirs");
+          }}
+        >
+          Traditions & Loisirs
+        </Link>
+        <Link
+          className={`Navigation__links--link ${
+            searchParamsCategory && searchParamsCategory?.includes("biologie")
+              ? "active"
+              : ""
+          }`}
+          to="/"
+          onClick={() => {
+            handleSearchCategory("biologie");
+          }}
+        >
+          Biologie
+        </Link>
+        <Link
+          className={`Navigation__links--link ${
+            searchParamsCategory && searchParamsCategory?.includes("produits")
+              ? "active"
+              : ""
+          }`}
+          to="/"
+          onClick={() => {
+            handleSearchCategory("produits");
+          }}
+        >
+          Produits
+        </Link>
+        <Link
+          className={`Navigation__links--link ${
+            searchParamsCategory && searchParamsCategory?.includes("autre")
+              ? "active"
+              : ""
+          }`}
+          to="/"
+          onClick={() => {
+            handleSearchCategory("autre");
+          }}
+        >
+          Autre
+        </Link>
       </div>
       {currentUser ? (
         <Link

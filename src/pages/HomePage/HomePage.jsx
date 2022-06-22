@@ -40,9 +40,11 @@ const HomePage = () => {
     <div className="HomePage pageWrapWidth container-medium">
       <h2>Dernières publications</h2>
       <div className="HomePage__wrapper">
-        {datasArray &&
-          datasArray.length > 0 &&
-          datasArray.map((data) => <DataPreview data={data} />)}
+        {datasArray && datasArray.length > 0 ? (
+          datasArray.map((data) => <DataPreview data={data} />)
+        ) : (
+          <p>Aucune données pour le moment...</p>
+        )}
       </div>
     </div>
   );

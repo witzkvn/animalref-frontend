@@ -36,7 +36,7 @@ export const getAllDatasAction = (fetchUrl) => {
   return async (dispatch) => {
     try {
       const res = await client().get(
-        `data/?fields=title,slug,description,refLink,createdAt,rating${
+        `data/?fields=title,category,slug,description,refLink,createdAt,rating${
           fetchUrl ? fetchUrl : ""
         }`
       );
